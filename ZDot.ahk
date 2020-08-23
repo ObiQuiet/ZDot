@@ -10,35 +10,42 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #InstallMouseHook
 #UseHook On
 
-
 #include classMarker.ahk
 #include classPlayerPosition.ahk
 #include fnRandBetween.ahk
 #include fnTooltips.ahk
 
+
+; The "You Are Here" dot in the center of the map
 pxYAHDotX := 1675
 pxYAHDotY := 170
 objYAHDot := New class_Marker("yah.png", "ffffff")
 objYAHDot.SetXY(pxYAHDotX, pxYAHDotY)
 
+; This class can detect the horizontal position of the little icon along profile view at the bottom of the map
 objPlayerPosition := New class_PlayerPosition()
+
+; The marker along the bottom of the map
 objMovingDot := New class_Marker("yellowmarker.png", "1212f1", -20, 0)
 
 StatusMsg("ZDot is WAITING for the Zwift game to start")
-		
+
+; FIXME make a loop instead, for the status message		
 WinWait, ahk_exe ZwiftApp.exe,,180
 if (ErrorLevel == 0) 
-	WinMaximize
+	WinMaximize   ; in case the user forgets
+
 
 StatusMsg("ZDot Loaded")
 
-fMenuOpen := true
 fZwiftActive := false
-fZwiftExists := true
+fZwiftExists := false
+GoSub CheckForZwift
 
-fPrevZwiftActive := false
+; Prep to automatically close ZDot after the game is closed
 msExitDelay := 3 * 60 * 1000
 msExitTime := A_TickCount+msExitDelay
+
 
 SetTimer, UpdatePlayerPosition, 511
 SetTimer, CheckForZwift, 1000
@@ -52,13 +59,13 @@ loop
 		}
 
 	if fZwiftExists
-		msExitTime := A_TickCount + msExitDelay
+		msExitTime := A_TickCount + msExitDelay    ; reset the ZDot exit delay
 
 
 	if fZwiftActive
 		{				
 		StatusMsg("ZDot OK")
-		objYAHDot.ShowHide(objMovingDot.IsVisible())
+		objYAHDot.ShowHide(objMovingDot.IsVisible())    ; show or hide the YAH dot based on whether the moving dot is present
 		}	
 		
 	else if (fZwiftExists and not fZwiftActive)
@@ -94,20 +101,8 @@ UpdatePlayerPosition:
 		}
 	else
 		{
-		pxCurrentX := objMovingDot.X()
-		pxNewX := objPlayerPosition.X()
-	;	pxNewX := 1401
-	;	ToolTip XPos %pxNewX% %A_TickCount%,A_ScreenWidth*0.45,A_ScreenHeight*0.48, 5
- 
-		objMovingDot.Show(pxNewX, 296)		
-	
-		;if (pxNewX > pxCurrentX)
-		;	   { pxNewX := pxCurrentX + (pxNewX - pxCurrentX)/2
-		;	   }
-		;else if (pxNewX < pxCurrentX)
-		;	   { pxNewX := pxCurrentX - (pxCurrentX - pxNewX)/2
-		;	   }
-			
+		; put the marker at the same horizontal position as the game's own player icon, but at its own vertical position
+		objMovingDot.Show(objPlayerPosition.X(), 296)		
 		}
 	return
 

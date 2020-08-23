@@ -4,15 +4,15 @@
 
 class class_PlayerPosition
 	{
-	pxSearchWidth := 10
-	pxSearchHeight := 10
+	pxSearchWidth := 5
+	pxSearchHeight := 5
 	
 	MaxSearchAreaX1 := 1460
 	MaxSearchAreaY1 := 240
 
 	MaxSearchAreaX2 := 1910
 	MaxSearchAreaY2 := 310
-	; 1460, 240, to 1460+449, 240+70
+	; 1460, 240, to 1460+450, 240+70
 	
 	countMisses := 5
 
