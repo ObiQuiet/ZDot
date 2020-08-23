@@ -4,14 +4,21 @@
 ; Revision: 2020-08-23
 ; Author: ObiQuiet, quietjedi@gmail.com
 ; -------------------------
-; Depends on AutoHotkey
+; Depends on AutoHotkey, from autohotkey.com
 
 ; -------------------------
 ; Limitations
 ; * Hard-coded to a maximized, not fullscreen, Zwift game window
+;     - Hard-coded to 1920x1080 screens	
+;     - ZDot will maximize the game window for you if it appears after ZDot starts
+; * Hard-coded to the current version of the Zwift game interface  (version 1.0.53547)
+;     - Zwift may well change elements of their game UI which ZDot is sensitive to, making this code obsolete
 ; * Accuracy and stability of the moving dot could be improved still
 ; * The dot in the center of the map is aligned for the zoomed-out map only, not the zoomed-in or perspective map
 ;     - in game, click on the map to cycle between its modes   
+; 
+; Bonus Feature
+; * ZDot will move the mouse cursor off the screen if it's been left idle for while     - in game, click on the map to cycle between its modes   
 
 #SingleInstance force
 
