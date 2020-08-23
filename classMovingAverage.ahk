@@ -1,3 +1,9 @@
+; -------------------------
+; Provides a moving window over a series of sample values
+; Supports calculating the simple moving average, min, max, and mid-point (halfway between min and max) of the samples
+; Author: ObiQuiet, quietjedi@gmail.com
+; -------------------------
+
 class class_SMA
 {
 	arySamples := []
@@ -42,7 +48,7 @@ class class_SMA
 	Min()
 		{
 		if (this.countSamples == 0)
-			return 0
+			return ""
 			
 		numMin := this.arySamples[0]
 		
@@ -60,7 +66,7 @@ class class_SMA
 	Max()
 		{
 		if (this.countSamples == 0)
-			return 0
+			return ""
 			
 		numMax := this.arySamples[0]
 		
@@ -77,7 +83,7 @@ class class_SMA
 	Mid()
 		{
 		if (this.countSamples == 0)
-			return 0
+			return ""
 			
 		numMin := this.arySamples[0]
 		numMax := this.arySamples[0]
@@ -94,7 +100,7 @@ class class_SMA
 	Average()
 		{
 		if (this.countSamples == 0)
-			return 0
+			return ""
 			
 		numTotal := 0
 		
@@ -107,7 +113,6 @@ class class_SMA
 		}
 
 
-		
 	Clear()
 		{
 		this.arySamples := []

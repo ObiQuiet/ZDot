@@ -1,3 +1,8 @@
+; -------------------------
+; Creates transparent GUI windows for marker icons, using image files
+; Author: ObiQuiet, quietjedi@gmail.com
+; -------------------------
+
 class class_Marker
 {
 	idGUI := ""
@@ -71,6 +76,12 @@ class class_Marker
 	{
 	return this.pxX
 	}
+
+	Y()
+	{
+	return this.pxY
+	}
+
 
 	IsVisible()
 	{

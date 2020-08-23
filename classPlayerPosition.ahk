@@ -1,3 +1,18 @@
+; -------------------------
+; An instance of this class is used to search the map area of the Zwift game display to 
+; find the tiny icon which indicates the player's position on the altitude profile along the bottom of the map
+;
+; Features
+; * Quickly searches a small area around the prior location first.  If not found, searches a larger area
+; * Uses the previously found locations along with the current one to "stabilize" the location, and reduce jumping around
+; *   - this also compensates for occasional failed searches
+; * Counts the number of times no location was found (countMisses) which can be used to determine that the icon isn't visible
+;
+; Limiations
+; * There are many methods to stabilze the reported location.  This could be improved.
+;
+; Author: ObiQuiet, quietjedi@gmail.com
+; -------------------------
 
 #include fnColorSearch.ahk
 #include classMovingAverage.ahk
@@ -16,7 +31,7 @@ class class_PlayerPosition
 	
 	countMisses := 5
 
-	objSMA := ""
+	objSMA := ""    ; tracks a simple moving average
 
 	pxX := 0
 	pxY := 0
@@ -39,7 +54,7 @@ class class_PlayerPosition
 		}
 
 
-Update()
+Find()
 	{
 	msStart := A_TickCount
 	

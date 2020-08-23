@@ -1,17 +1,19 @@
+; -------------------------
+; Functions to make AHK tooltips easier to use
+; Author: ObiQuiet, quietjedi@gmail.com
+; -------------------------
 
 CoordMode, Tooltip, Screen
 
 CenterToolTip(strText, msDuration)
 	{
 	ToolTip, %strText%,A_ScreenWidth/2,A_ScreenHeight/3, 2
-	; Mousemove, 100, 100
 	sleep %msDuration%		
 	ToolTip ,, 2
 	}
 
 CountdownToolTip(strText, msDuration)
 	{
-
 	timeOut := A_TickCount+msDuration
 	while A_TickCount < timeOut
 		{
@@ -19,7 +21,7 @@ CountdownToolTip(strText, msDuration)
 		ToolTip, %strText% %secsLeft%,A_ScreenWidth/2,A_ScreenHeight/3, 2
 		sleep 10000
 		}
-	ToolTip ,, 1
+	ToolTip ,, 2
 	}
 	
 StaticToolTip(strText, pctX, pctY)
@@ -30,7 +32,7 @@ StaticToolTip(strText, pctX, pctY)
 StatusMsg(strMsg)
 	{
 	static strLastMsg := ""
-	if (strMsg != strLastMsg)
+	if (strMsg != strLastMsg)     ; prevents flickering when the message hasn't changed
 		{
 		ToolTip, %strMsg%, 1470, 0 , 2
 		strLastMsg := strMsg
