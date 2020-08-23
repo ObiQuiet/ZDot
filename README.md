@@ -3,6 +3,7 @@
 #
 # -------------------------
 # Places two high-visibility "you are here" markers over the Zwift in-game map
+# See the file WhatZDotLooksLike.png for an example
 # Author: ObiQuiet, quietjedi@gmail.com
 # -------------------------
 # Depends on AutoHotKey https://www.autohotkey.com/ for Windows
