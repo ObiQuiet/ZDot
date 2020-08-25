@@ -13,7 +13,7 @@ ColorSearch(x, y, rgb)  ; returns true if the color is found within a small area
 DoubleColorSearch(x1, y1, width, rgb)
 ; Looks for the given color at two points, horizontally offset from each other
 ; This is more reliable than a single search when looking for e.g. a button/message/dialog against a variagated background
-; and is faster than searching a rectangular area 
+; and is faster than searching a rectangular area or for an image 
 	{
 	PixelGetColor, rgbAtXY, x1, y1, RGB
 	fFound1 := (rgbAtXY=rgb)

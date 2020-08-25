@@ -14,7 +14,6 @@
 ; Author: ObiQuiet, quietjedi@gmail.com
 ; -------------------------
 
-#include fnColorSearch.ahk
 #include classMovingAverage.ahk
 
 class class_PlayerPosition
