@@ -29,12 +29,21 @@ StaticToolTip(strText, pctX, pctY)
 	ToolTip, %strText%,A_ScreenWidth*pctX,A_ScreenHeight*pctY, 1
 	}
 	
-StatusMsg(strMsg)
+StatusMsg(strMsg, pxNewX := "", pxNewY := "")
 	{
+	static pxX := A_ScreenWidth/2
+	static pxY := A_ScreenHeight/3
 	static strLastMsg := ""
+	
+	if pxNewX is Number
+		pxX := pxNewX
+
+	if pxNewY is Number
+		pxY := pxNewY	
+	
 	if (strMsg != strLastMsg)     ; prevents flickering when the message hasn't changed
 		{
-		ToolTip, %strMsg%, 1470, 0 , 2
+		ToolTip, %strMsg%, pxX, pxY , 2
 		strLastMsg := strMsg
 		}
 	}

@@ -77,7 +77,7 @@ objMovingDot := New class_Marker("yellowmarker.png", "1212f1", -20, 0)
 ; Wait for the game to start
 ; --------------------------------------------------------------------------------------------------
 
-StatusMsg("ZDot is WAITING for the Zwift game to start")
+StatusMsg("ZDot is WAITING for the Zwift game to start", 1470, 0)
 
 WinWait, ahk_exe ZwiftApp.exe,,180
 if (ErrorLevel == 0) 
